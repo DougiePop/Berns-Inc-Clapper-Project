@@ -8,8 +8,12 @@ class ClapperComponent extends Component {
 
         this.clappr_player = new Clappr.Player({
             parent: `#${id}`,
-            source: source
+            source: source,
+            width: 250,
+            height: 200
         })
+
+        this.clappr_player.play();
     }
 
     componentWillUnmount() {
@@ -22,7 +26,6 @@ class ClapperComponent extends Component {
 
         return (
             <div>
-                <p>Active</p>
                 <p id={id}></p>
             </div>
         );
