@@ -23473,7 +23473,13 @@ var _videoCamera = __webpack_require__(234);
 
 var _videoCamera2 = _interopRequireDefault(_videoCamera);
 
+var _search = __webpack_require__(241);
+
+var _search2 = _interopRequireDefault(_search);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -23494,13 +23500,15 @@ var App = function (_Component) {
         _this.toggleVideo3 = _this.toggleVideo3.bind(_this);
         _this.toggleVideo4 = _this.toggleVideo4.bind(_this);
         _this.toggleVideo5 = _this.toggleVideo5.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.state = {
             video1IsActive: false,
             video2IsActive: false,
             video3IsActive: false,
             video4IsActive: false,
-            video5IsActive: false
-
+            video5IsActive: false,
+            field: ''
         };
         return _this;
     }
@@ -23541,6 +23549,26 @@ var App = function (_Component) {
             });
         }
     }, {
+        key: 'handleChange',
+        value: function handleChange(e) {
+            this.setState(_defineProperty({}, e.target.name, e.target.value));
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit() {
+            if (this.state.field === "parkour" || this.state.field === "p") {
+                this.toggleVideo1();
+            } else if (this.state.field === "dragon" || this.state.field === "d") {
+                this.toggleVideo2();
+            } else if (this.state.field === "jazz" || this.state.field === "j") {
+                this.toggleVideo3();
+            } else if (this.state.field === "bunny" || this.state.field === "b") {
+                this.toggleVideo4();
+            } else if (this.state.field === "china" || this.state.field === "c") {
+                this.toggleVideo5();
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             // console.log("in React App");
@@ -23560,56 +23588,143 @@ var App = function (_Component) {
                         'h1',
                         null,
                         'BernsTube'
-                    )
-                ),
-                _react2.default.createElement('hr', null),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'banner' },
-                    _react2.default.createElement(
-                        'h2',
-                        null,
-                        '"Big Buck Bunny"'
                     ),
                     _react2.default.createElement(
-                        'h2',
-                        null,
-                        'Featured Clip - Watch Now in HLS'
+                        'form',
+                        { onSubmit: this.handleSubmit, id: 'searchForm' },
+                        _react2.default.createElement('input', { id: 'searchInput', placeholder: 'Search', type: 'text', name: 'field', value: this.state.field, onChange: this.handleChange }),
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'searchButton', type: 'submit' },
+                            _react2.default.createElement(_search2.default, null)
+                        )
                     )
-                ),
-                _react2.default.createElement('hr', null),
-                _react2.default.createElement(
-                    'p',
-                    null,
-                    'Recommended HLS Videos'
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'bodyDiv' },
+                    { className: 'mainBody' },
                     _react2.default.createElement(
                         'div',
-                        null,
-                        this.state.video1IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video1', source: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8' }) : thumbnail1
+                        { className: 'banner' },
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            'Featured Clip'
+                        ),
+                        _react2.default.createElement('iframe', { width: '1020', height: '315', src: 'https://www.youtube.com/embed/aqz-KE-bpKQ', frameborder: '0', gesture: 'media', allow: 'encrypted-media', allowfullscreen: true })
                     ),
                     _react2.default.createElement(
                         'div',
-                        null,
-                        this.state.video2IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video2', source: 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8' }) : thumbnail2
+                        { className: 'subHeader' },
+                        _react2.default.createElement(
+                            'p',
+                            { id: 'subbHeader' },
+                            'Recommended HLS Videos'
+                        )
                     ),
                     _react2.default.createElement(
                         'div',
-                        null,
-                        this.state.video3IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video3', source: 'https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8' }) : thumbnail3
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        this.state.video4IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video4', source: 'http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8' }) : thumbnail4
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        this.state.video5IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video5', source: 'http://www.streambox.fr/playlists/test_001/stream.m3u8' }) : thumbnail5
+                        { className: 'bodyDiv' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'video' },
+                            this.state.video1IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video1', source: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8' }) : thumbnail1,
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoTitle' },
+                                'Parkour: A New Sport?'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                'Clip King'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                '50K views - 4 months ago'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'video' },
+                            this.state.video2IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video2', source: 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8' }) : thumbnail2,
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoTitle' },
+                                'Dragons: The Animation'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                'Hire Queen'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                '90K views - 2 months ago'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'video' },
+                            this.state.video3IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video3', source: 'https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8' }) : thumbnail3,
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoTitle' },
+                                'Ronde Table: Jazz Classics'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                'Classiq'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                '4K views - 6 months ago'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'video' },
+                            this.state.video4IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video4', source: 'http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8' }) : thumbnail4,
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoTitle' },
+                                'Big Buck Bunny: The Movie'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                'JuiceGrid'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                '98K views - 8 months ago'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'video' },
+                            this.state.video5IsActive ? _react2.default.createElement(_ClapperComponent2.default, { id: 'video5', source: 'http://www.streambox.fr/playlists/test_001/stream.m3u8' }) : thumbnail5,
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoTitle' },
+                                'China\'s Ancient History'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                'Blender'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'videoAuthor' },
+                                '17K views - 3 months ago'
+                            )
+                        )
                     )
                 )
             );
@@ -59386,7 +59501,7 @@ exports = module.exports = __webpack_require__(238)(undefined);
 
 
 // module
-exports.push([module.i, "h1 {\n  text-align: center;\n  font-size: 24px;\n  font-family: 'Trebuchet MS', Helvetica, sans-serif;\n  color: red; }\n\nh2 {\n  background: -webkit-linear-gradient(#9400D3, #FF00FF);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  text-align: center;\n  font-family: Courier New, Courier, monospace, sans-serif; }\n\n.banner {\n  background-image: url(\"http://www.animation-tutorials.com/wp-content/uploads/2015/01/bbb.jpg\");\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n  background-position: center;\n  height: 30em; }\n\nsvg {\n  transform: translate(-50%, -50%);\n  top: 4.5%;\n  left: 43%;\n  position: absolute;\n  max-height: 10cm;\n  max-width: 10cm;\n  width: 4vmin;\n  height: 3.5vmin; }\n\np {\n  font-weight: bold;\n  font-size: 16px;\n  font-family: Verdana, sans-serif; }\n\n.header {\n  background-image: url(\"http://www.freelogovectors.net/wp-content/uploads/2012/12/Film-strip-4-roll-set-vector.jpg\");\n  background-size: 22%; }\n\n.bodyDiv {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-between; }\n\nimg {\n  width: 13em;\n  height: 13em; }\n", ""]);
+exports.push([module.i, "h1 {\n  display: flex;\n  text-align: center;\n  font-size: 18px;\n  font-family: 'Trebuchet MS', Helvetica, sans-serif;\n  color: red;\n  margin-left: 6px; }\n\nh2 {\n  background: -webkit-linear-gradient(#9400D3, #FF00FF);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  text-align: centerleft;\n  font-family: Courier New, Courier, monospace, sans-serif; }\n\n.banner {\n  position: relative;\n  width: 100%;\n  height: 75%;\n  text-align: center;\n  background: #f0f0f0; }\n\nsvg {\n  display: flex; }\n\n#searchForm {\n  height: 90%;\n  width: 40%;\n  margin-left: 20.5%;\n  border-style: ridge; }\n\n#searchInput {\n  width: 91%;\n  height: 100%;\n  font-size: 14px;\n  margin-bottom: 2px;\n  border-style: none; }\n\np {\n  font-weight: bold;\n  font-size: 16px;\n  font-family: Verdana, sans-serif; }\n\n.header {\n  display: flex;\n  flex-direction: row;\n  min-width: 20px;\n  align-items: center;\n  margin-left: 3%; }\n\n.bodyDiv {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: center;\n  align-items: center;\n  background: #f0f0f0; }\n\nimg {\n  margin-top: 16px;\n  width: 12.2em;\n  height: 15.5em; }\n\n.mainBody {\n  background: #f0f0f0; }\n\n.video {\n  margin: 5px; }\n\n.searchButton {\n  height: 24px;\n  width: 30px;\n  margin-left: 1px;\n  margin-top: 4px; }\n\n.videoTitle {\n  font-family: Georgia, Arial, sans-serif;\n  font-size: 1.0rem;\n  font-weight: 500;\n  max-height: 3.2rem;\n  line-height: 1.6rem;\n  overflow: hidden; }\n\n.videoAuthor {\n  color: #b3b3b3;\n  font-family: Georgia, Arial, sans-serif;\n  font-size: 1.0rem;\n  font-weight: 500;\n  max-height: 3.2rem;\n  line-height: 1.6rem;\n  overflow: hidden;\n  margin: 0;\n  border: 0; }\n\n.subHeader {\n  display: flex; }\n\n#subbHeader {\n  font-family: Georgia, Arial, sans-serif; }\n\n@media all and (max-width: 3000px) {\n  .subHeader {\n    justify-content: center;\n    margin-right: 35%; }\n  .searchButton {\n    margin-left: 5.3%; }\n  #searchInput {\n    font-size: 20px; } }\n\n@media all and (max-width: 1300px) {\n  .subHeader {\n    justify-content: left;\n    margin-left: 5%; }\n  .searchButton {\n    margin-bottom: 4px;\n    margin-left: 1px; }\n  #searchInput {\n    width: 92%;\n    height: 100%;\n    font-size: 18px;\n    margin-bottom: 7px;\n    border-style: none; } }\n", ""]);
 
 // exports
 
@@ -59926,6 +60041,44 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = __webpack_require__(235);
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaSearch = function FaSearch(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm27.2 18.6q0-4.2-2.9-7.1t-7.1-2.9-7 2.9-3 7.1 2.9 7 7.1 3 7.1-3 2.9-7z m11.4 18.5q0 1.2-0.8 2.1t-2 0.8q-1.2 0-2-0.8l-7.7-7.7q-4 2.8-8.9 2.8-3.2 0-6.1-1.3t-5-3.3-3.4-5-1.2-6.1 1.2-6.1 3.4-5.1 5-3.3 6.1-1.2 6.1 1.2 5 3.3 3.4 5.1 1.2 6.1q0 4.9-2.7 8.9l7.6 7.6q0.8 0.9 0.8 2z' })
+        )
+    );
+};
+
+exports.default = FaSearch;
+module.exports = exports['default'];
 
 /***/ })
 /******/ ]);

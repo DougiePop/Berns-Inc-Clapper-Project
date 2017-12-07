@@ -1,8 +1,10 @@
 h1 {
+    display: flex;
     text-align: center;
-    font-size: 24px;
+    font-size: 18px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     color: red;
+    margin-left: 6px;
 
 }
 
@@ -10,27 +12,36 @@ h2 {
     background: -webkit-linear-gradient(#9400D3, #FF00FF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: center;
+    text-align: centerleft
+    ;
     font-family: Courier New, Courier, monospace, sans-serif;
 }
 
 .banner {
-    background-image: url("http://www.animation-tutorials.com/wp-content/uploads/2015/01/bbb.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 30em;
+    position: relative;
+    width: 100%;
+    height: 75%;
+    text-align: center;
+    background: #f0f0f0
 }
 
 svg {
-    transform: translate(-50%, -50%);
-    top: 4.5%;
-    left: 43%;
-    position: absolute;
-    max-height:10cm;
-    max-width:10cm;
-    width: 4vmin;
-    height: 3.5vmin;
+    display: flex;
+}
+
+#searchForm {
+    height: 90%;
+    width: 40%;
+    margin-left: 20.5%;
+    border-style: ridge;
+}
+
+#searchInput {
+    width: 91%;
+    height: 100%;
+    font-size: 14px;
+    margin-bottom: 2px;
+    border-style: none;
 }
 
 p {
@@ -40,21 +51,103 @@ p {
 }
 
 .header {
-    background-image: url("http://www.freelogovectors.net/wp-content/uploads/2012/12/Film-strip-4-roll-set-vector.jpg");
-    background-size: 22%;
+    display: flex;
+    flex-direction: row;
+    min-width: 20px;
+    align-items: center;
+    margin-left: 3%;
 }
 
 .bodyDiv {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
 }
 
 img {
-    width: 13em;
-    height: 13em;
+    margin-top: 16px;
+    width: 12.2em;
+    height: 15.5em;
 }
 
+.mainBody {
+    background: #f0f0f0;
+}
+
+.video {
+    margin: 5px;
+}
+
+.searchButton {
+    height: 24px;
+    width: 30px;
+    margin-left: 1px;
+    margin-top: 4px;
+}
+
+.videoTitle{
+    font-family: Georgia, Arial, sans-serif;
+    font-size: 1.0rem;
+    font-weight: 500;
+    max-height: 3.2rem;
+    line-height: 1.6rem;
+    overflow: hidden;
+}
+
+.videoAuthor {
+    color: #b3b3b3;
+    font-family: Georgia, Arial, sans-serif;
+    font-size: 1.0rem;
+    font-weight: 500;
+    max-height: 3.2rem;
+    line-height: 1.6rem;
+    overflow: hidden;
+    margin: 0;
+    border: 0;
+}
+
+.subHeader {
+    display: flex;
+}
+
+#subbHeader {
+    font-family: Georgia, Arial, sans-serif;
+}
+
+// Big Screen
+@media all and (max-width: 3000px) {
+    .subHeader {
+      justify-content: center;
+      margin-right: 35%;
+    }
+    .searchButton {
+      margin-left: 5.3%;
+    }
+    #searchInput {
+      font-size: 20px;
+    }
+}
+  
+// Small Screen
+@media all and (max-width: 1300px) {
+    .subHeader {
+      justify-content: left;
+      margin-left: 5%;
+    }
+    .searchButton {
+        margin-bottom: 4px;
+        margin-left: 1px;
+    }
+    #searchInput {
+        width: 92%;
+        height: 100%;
+        font-size: 18px;
+        margin-bottom: 7px;
+        border-style: none;
+    }
+}
     
 
 
